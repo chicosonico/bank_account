@@ -1,3 +1,7 @@
+
+
+var clientList =[];
+
 // Class Account
 
 class BankAccount {
@@ -40,11 +44,11 @@ class BankAccount {
 // Client class
 
  class Client{
-
-    constructor(clientID, clientName, clientAccounts) {
+       
+    constructor(clientID, clientName) {
         this._clientID = clientID;
         this._clientName = clientName;
-        this._clientAccounts = clientAccounts;
+        this._clientAccounts = [];
       }
 
     get getClientID() {
@@ -66,10 +70,49 @@ class BankAccount {
         this._clientAccounts = editClientAccounts;
       }
 
-  
-
-
-
 
  }
+
+
+  function createClient(){
+    let clientIDInput= document.getElementById("clientID").value;
+    let clientNameInput = document.getElementById("clientName").value;
+   
+ 
+    newClient = new Client(clientIDInput, clientNameInput);
+ 
+    clientList.push(newClient);
+    console.log(clientList);
+    $(':input').val(''); // clean input fields from bootstrap 
+
+
+  }
+
+function createAccount(){
+
+
+  
+    let clientNameInput = document.getElementById("clientInputAccount").value;
+    let accountNumberInput = document.getElementById("accountID").value;
+
+    for (i=0; i < clientList.length; i++) {
+      if(clientNameInput == clientList[i].getClientName){
+          
+          newAccount = new BankAccount(accountNumberInput, clientNameInput);
+
+          clientList[i].setClientAccounts.push(newAccount);
+          
+      }
+  } 
+   
+
+    console.log(clientList);
+    $(':input').val(''); // clean input fields from bootstrap 
+
+
+
+
+
+  }
+
 
