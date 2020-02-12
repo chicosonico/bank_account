@@ -1,10 +1,14 @@
 
 
 var clientList =[];
+var accountList = [];
+var ammount = parseInt(0);
+
 
 // Class Account
 
 class BankAccount {
+    
     constructor(accountID, client, balance, movements) {
       this._accountID = accountID;
       this._client = client;
@@ -39,6 +43,22 @@ class BankAccount {
         this._movements = editMovements;
       } 
 
+      addFunds(ammount){
+        this._balance = parseInt(this._balance) + ammount;
+        
+      }
+
+      withdrawFunds(ammount){
+        this._balance = parseInt(this._balance) - ammount;
+      }
+
+      addMovement(move){
+        this._movements = parseInt(this._movements) + move;
+      }
+      
+
+
+
  } 
 
 // Client class
@@ -66,8 +86,13 @@ class BankAccount {
         this._clientName = editClientName;
       }
 
-    set setClientAccounts(editClientAccounts) {
-        this._clientAccounts = editClientAccounts;
+    set setClientAccounts(clientAccounts) {
+        this._clientAccounts = clientAccounts;
+      }
+
+      addAccount(){
+        this._clientAccounts.push(newAccount);
+
       }
 
 
@@ -91,26 +116,66 @@ class BankAccount {
 function createAccount(){
 
 
-  
     let clientNameInput = document.getElementById("clientInputAccount").value;
     let accountNumberInput = document.getElementById("accountID").value;
 
     for (i=0; i < clientList.length; i++) {
       if(clientNameInput == clientList[i].getClientName){
           
-          newAccount = new BankAccount(accountNumberInput, clientNameInput);
-
-          clientList[i].setClientAccounts.push(newAccount);
+          newAccount = new BankAccount(accountNumberInput, clientNameInput, 0, 0); // zero parameter for avoid undefined before movements
+          console.log(newAccount);
+          clientList[i].addAccount(newAccount);
+          accountList.push(newAccount);
           
       }
   } 
    
+    console.log(clientList);
+    $(':input').val(''); // clean input fields from bootstrap 
+
+
+  }
+
+  function addMoney(){
+
+
+    let accountMovement= document.getElementById("accountMovement").value;
+    let ammountMovement = document.getElementById("ammountMovement").value;
+    ammountMovement = parseInt(ammountMovement);
+    // console.log(ammountMovement);
+   
+
+    for (i=0; i < accountList.length; i++) {
+      if(accountMovement == accountList[i].getAccountID){ 
+        accountList[i].addFunds(ammountMovement); 
+        accountList[i].addMovement(1);
+      }
+  } 
 
     console.log(clientList);
     $(':input').val(''); // clean input fields from bootstrap 
 
 
+  }
 
+  function withdrawMoney(){
+
+
+    let accountMovement= document.getElementById("accountMovement").value;
+    let ammountMovement = document.getElementById("ammountMovement").value;
+    ammountMovement = parseInt(ammountMovement);
+    // console.log(ammountMovement);
+   
+
+    for (i=0; i < accountList.length; i++) {
+      if(accountMovement == accountList[i].getAccountID){ 
+        accountList[i].withdrawFunds(ammountMovement); 
+        accountList[i].addMovement(1);  
+      }
+  } 
+
+    console.log(clientList);
+    $(':input').val(''); // clean input fields from bootstrap 
 
 
   }
