@@ -180,4 +180,21 @@ function createAccount(){
 
   }
 
+  function showBalance(){
+
+    let accountSearched= document.getElementById("accountSearched").value;
+    
+    // console.log(ammountMovement);
+   
+
+    for (i=0; i < accountList.length; i++) {
+      if(accountSearched == accountList[i].getAccountID){ 
+        document.getElementById("result").innerHTML = "Client: "+ accountList[i].getClient +"</br>"+ "Balance: " + accountList[i].getBalance + "€" + "</br>" + 
+        "Movements: " + accountList[i].getMovements; 
+        
+      }
+  } 
+    
+  }
+
 
