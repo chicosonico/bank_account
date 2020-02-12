@@ -129,6 +129,19 @@ function createAccount(){
           
       }
   } 
+
+  // function createAccount(){
+  //   let clientNameInput = document.getElementById("clientInputAccount").value;
+  // for (client of clientList){
+  //   if (nombre == clientNameInput){
+  //     let accountNumberInput = document.getElementById("accountID").value;
+  //     newAccount = new BankAccount(accountNumberInput, clientNameInput); // zero parameter for avoid undefined before movements
+  //     console.log(newAccount);
+  //     clientList[i].addAccount(newAccount);
+  //     accountList.push(newAccount);
+
+  //   }
+  // }
    
     console.log(clientList);
     $(':input').val(''); // clean input fields from bootstrap 
