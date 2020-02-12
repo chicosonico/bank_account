@@ -9,11 +9,11 @@ var ammount = parseInt(0);
 
 class BankAccount {
     
-    constructor(accountID, client, balance, movements) {
+    constructor(accountID, client) {
       this._accountID = accountID;
       this._client = client;
-      this._balance = balance;
-      this._movements = movements;
+      this._balance = 0;
+      this._movements = 0;
     }
 
     get getAccountID() {
@@ -44,16 +44,16 @@ class BankAccount {
       } 
 
       addFunds(ammount){
-        this._balance = parseInt(this._balance) + ammount;
+        this._balance = this._balance + ammount;
         
       }
 
       withdrawFunds(ammount){
-        this._balance = parseInt(this._balance) - ammount;
+        this._balance = this._balance - ammount;
       }
 
-      addMovement(move){
-        this._movements = parseInt(this._movements) + move;
+      addMovement(){
+        this._movements = this._movements + 1;
       }
       
 
@@ -122,7 +122,7 @@ function createAccount(){
     for (i=0; i < clientList.length; i++) {
       if(clientNameInput == clientList[i].getClientName){
           
-          newAccount = new BankAccount(accountNumberInput, clientNameInput, 0, 0); // zero parameter for avoid undefined before movements
+          newAccount = new BankAccount(accountNumberInput, clientNameInput); // zero parameter for avoid undefined before movements
           console.log(newAccount);
           clientList[i].addAccount(newAccount);
           accountList.push(newAccount);
@@ -148,7 +148,7 @@ function createAccount(){
     for (i=0; i < accountList.length; i++) {
       if(accountMovement == accountList[i].getAccountID){ 
         accountList[i].addFunds(ammountMovement); 
-        accountList[i].addMovement(1);
+        accountList[i].addMovement();
       }
   } 
 
@@ -170,7 +170,7 @@ function createAccount(){
     for (i=0; i < accountList.length; i++) {
       if(accountMovement == accountList[i].getAccountID){ 
         accountList[i].withdrawFunds(ammountMovement); 
-        accountList[i].addMovement(1);  
+        accountList[i].addMovement();  
       }
   } 
 
