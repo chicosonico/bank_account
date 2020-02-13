@@ -156,6 +156,8 @@ function createAccount(){
     let accountMovement= document.getElementById("accountMovement").value;
     let ammountMovement = document.getElementById("ammountMovement").value;
     ammountMovement = parseInt(ammountMovement);
+    showMessageNoFunds = document.getElementById("noFundsMessage");
+    noFundsMessage.style.display = "none";
     // console.log(ammountMovement);
    
 
@@ -175,20 +177,37 @@ function createAccount(){
   function withdrawMoney(){
 
 
-    let accountMovement= document.getElementById("accountMovement").value;
-    let ammountMovement = document.getElementById("ammountMovement").value;
+    var accountMovement= document.getElementById("accountMovement").value;
+    var ammountMovement = document.getElementById("ammountMovement").value;
     ammountMovement = parseInt(ammountMovement);
+    
+  
     // console.log(ammountMovement);
 
     
       
     for (i=0; i < accountList.length; i++) {
+
       if(accountMovement == accountList[i].getAccountID){ 
-        accountList[i].withdrawFunds(ammountMovement); 
-        accountList[i].addMovement();  
+
+           if(ammountMovement > accountList[i].getBalance){
+             showMessageNoFunds = document.getElementById("noFundsMessage");
+             noFundsMessage.style.display = "block"; 
+              return false;
+          }else{
+             showMessageNoFunds = document.getElementById("noFundsMessage");
+             noFundsMessage.style.display = "none"; 
+             accountList[i].withdrawFunds(ammountMovement); 
+             accountList[i].addMovement();
+         
+         }
+           
+
       }
+
+    }
     
-  } 
+  
 
     console.log(clientList);
     $(':input').val(''); // clean input fields from bootstrap 
