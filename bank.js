@@ -49,7 +49,9 @@ class BankAccount {
       }
 
       withdrawFunds(ammount){
+        
         this._balance = this._balance - ammount;
+
       }
 
       addMovement(){
@@ -94,7 +96,6 @@ class BankAccount {
         this._clientAccounts.push(newAccount);
 
       }
-
 
  }
 
@@ -178,13 +179,15 @@ function createAccount(){
     let ammountMovement = document.getElementById("ammountMovement").value;
     ammountMovement = parseInt(ammountMovement);
     // console.log(ammountMovement);
-   
 
+    
+      
     for (i=0; i < accountList.length; i++) {
       if(accountMovement == accountList[i].getAccountID){ 
         accountList[i].withdrawFunds(ammountMovement); 
         accountList[i].addMovement();  
       }
+    
   } 
 
     console.log(clientList);
