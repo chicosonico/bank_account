@@ -5,7 +5,7 @@ var accountList = [];
 var ammount = parseInt(0);
 
 
-// Class Account ////
+// Class Account //////
 
 class BankAccount {
     
